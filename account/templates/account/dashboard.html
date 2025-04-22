@@ -1,6 +1,30 @@
 {% extends "base.html" %}
+
 {% block title %}Dashboard{% endblock %}
+
 {% block content %}
- <h1>Dashboard</h1>
- <p>Welcome to your dashboard.</p>
+    <div class="dashboard">
+        <div class="dashboard-header">
+            <h1>Dashboard</h1>
+            <p class="welcome-message">Welcome to your dashboard, {{ request.user.first_name|default:request.user.username }}!</p>
+        </div>
+        
+        <div class="dashboard-content">
+            <div class="dashboard-card">
+                <h2>Quick Actions</h2>
+                <ul class="action-list">
+                    <li>
+                        <a href="{% url "edit" %}" class="action-link">
+                            Edit your profile
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url "password_change" %}" class="action-link">
+                            Change your password
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 {% endblock %}

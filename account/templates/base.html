@@ -1,22 +1,25 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>{% block title %}{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} | Bookmarks</title>
     <link href="{% static "css/base.css" %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="header">
         <span class="logo">Bookmarks</span>
         <span class="user">
             {% if request.user.is_authenticated %}
-            Hello {{ request.user.first_name|default:request.user.username }},
+            <span class="welcome-text">Hello {{ request.user.first_name|default:request.user.username }}</span>
             <form action="{% url 'logout' %}" method="post">
-                <button type="submit">Logout</button>
                 {% csrf_token %}
+                <button type="submit">Logout</button>
             </form>
             {% else %}
-            <a href="{% url 'login' %}">Log-in</a>
+            <a href="{% url 'login' %}" class="login-btn">Log-in</a>
             {% endif %}
         </span>
         {% if request.user.is_authenticated %}
@@ -33,7 +36,16 @@
         </ul>
         {% endif %}
     </div>
+    
     <div id="content">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        
         {% block content %}
         {% endblock %}
     </div>
