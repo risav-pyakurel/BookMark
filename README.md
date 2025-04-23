@@ -49,8 +49,8 @@ bookmark/
 ## Environment Variables
 Create a `.env` file in the root directory with the following variables:
 ```
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=postgres
+POSTGRES_USER=
+POSTGRES_PASSWORD=
 POSTGRES_DB=bookmark
 REDIS_HOST=redis
 REDIS_PORT=6379
