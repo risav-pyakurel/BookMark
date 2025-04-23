@@ -11,19 +11,44 @@
         
         <div class="dashboard-content">
             <div class="dashboard-card">
+                <h2>Your Bookmarks</h2>
+                {% with total_images_created=request.user.images_created.count %}
+                <div class="bookmark-stats">
+                    <span class="stat-number">{{ total_images_created }}</span>
+                    <span class="stat-label">bookmarked image{{ total_images_created|pluralize }}</span>
+                </div>
+                {% endwith %}
+            </div>
+
+            <div class="dashboard-card">
                 <h2>Quick Actions</h2>
                 <ul class="action-list">
                     <li>
                         <a href="{% url "edit" %}" class="action-link">
+                            <span class="action-icon">👤</span>
                             Edit your profile
                         </a>
                     </li>
                     <li>
                         <a href="{% url "password_change" %}" class="action-link">
+                            <span class="action-icon">🔒</span>
                             Change your password
                         </a>
                     </li>
                 </ul>
+            </div>
+
+            <div class="dashboard-card">
+                <h2>Bookmark Tool</h2>
+                <p class="bookmarklet-instructions">
+                    Drag the button below to your bookmarks toolbar to bookmark images from other websites:
+                </p>
+                <div class="bookmarklet-container">
+                    <a href="javascript:{% include "bookmarklet_launcher.js" %}" class="bookmarklet-button">
+                        <span class="bookmarklet-icon">📌</span>
+                        Bookmark it
+                    </a>
+                </div>
             </div>
         </div>
     </div>
