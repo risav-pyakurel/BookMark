@@ -68,7 +68,6 @@ DEBUG=True
 - **Backend**: Django
 - **Frontend**: HTML, CSS, JavaScript
 - **Database**: PostgreSQL
-- **Caching**: Redis
 - **Containerization**: Docker
 
 ## Development
